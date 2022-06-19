@@ -1,0 +1,190 @@
+<div class="demo-highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># L1 prediction error</span>
+<span class="k">def</span> <span class="nf">l1_error</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="n">x_t</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="c1">#</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">x_t</span><span class="p">)</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span> <span class="n">___</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">mean_squared_error</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_predicted</span><span class="p">):</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">___</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cost</span>
+
+
+<span class="c1"># Analytical solution</span>
+<span class="k">def</span> <span class="nf">analytic_sol</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="n">x_t</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span> <span class="n">___</span>
+    <span class="c1">#</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x_t</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span> <span class="n">___</span> <span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+
+<span class="c1"># Gradient Descent Function</span>
+<span class="c1"># Here iterations, learning_rate are hyperparameters that can be tuned</span>
+<span class="k">def</span> <span class="nf">gradient_descent</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
+    <span class="c1"># number of samples</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">___</span><span class="p">]</span>
+    <span class="c1"># number of features</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">___</span><span class="p">]</span>
+    <span class="n">x_t</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+    <span class="c1"># Initializing weight, learning rate and iterations</span>
+    <span class="n">current_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="n">iterations</span> <span class="o">=</span> <span class="n">iterations</span>
+    <span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
+    <span class="c1"># Estimation of optimal parameters</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">___</span><span class="p">):</span>
+        <span class="c1"># Making predictions</span>
+        <span class="n">y_predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">___</span><span class="p">)</span>
+        <span class="c1"># Calculationg the current cost</span>
+        <span class="n">current_cost</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">___</span><span class="p">)</span>
+        <span class="c1"># Calculating the gradients</span>
+        <span class="n">weight_derivative</span> <span class="o">=</span> <span class="n">___</span>
+        <span class="c1"># Updating weights</span>
+        <span class="n">current_weight</span> <span class="o">=</span> <span class="n">current_weight</span> <span class="o">-</span> <span class="n">___</span>
+        <span class="c1"># Printing the parameters for each 500th iteration</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">500</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Iteration </span><span class="si">{</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s2">: Cost </span><span class="si">{</span><span class="n">current_cost</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">current_weight</span>
+
+
+<span class="k">def</span> <span class="nf">linear_regression_1</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">#</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="n">x_test</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)]</span>
+    <span class="c1">#</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)]</span>
+    <span class="c1">#</span>
+    <span class="n">betta</span> <span class="o">=</span> <span class="n">analytic_sol</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">l1_error</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">betta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">linear_regression_2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="c1">#</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">#</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+    <span class="c1">#</span>
+    <span class="n">x_train</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="n">x_test</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)]</span>
+    <span class="c1">#</span>
+    <span class="n">y_train</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">k</span><span class="p">]</span>
+    <span class="c1">#</span>
+    <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="o">-</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)]</span>
+    <span class="c1"># </span>
+    <span class="n">betta</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">l1_error</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">betta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="c1"># load the data set</span>
+<span class="c1"># obtain the feature matrix as a numpy array</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span> <span class="n">___</span> <span class="p">(</span><span class="s1">'___'</span><span class="p">)</span>
+<span class="c1"># obtain the target variable as a numpy array</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span> <span class="n">___</span> <span class="p">(</span><span class="s1">'___'</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">error1</span> <span class="o">=</span> <span class="n">linear_regression_1</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">error1</span><span class="p">)</span>
+<span class="c1">#</span>
+<span class="n">error2</span> <span class="o">=</span> <span class="n">linear_regression_2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">error2</span><span class="p">)</span>
+</pre></div>
+<style id="css-style">pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.demo-highlight .hll { background-color: #49483e }
+.demo-highlight { background: #272822; color: #f8f8f2 }
+.demo-highlight .c { color: #75715e } /* Comment */
+.demo-highlight .err { color: #960050; background-color: #1e0010 } /* Error */
+.demo-highlight .esc { color: #f8f8f2 } /* Escape */
+.demo-highlight .g { color: #f8f8f2 } /* Generic */
+.demo-highlight .k { color: #66d9ef } /* Keyword */
+.demo-highlight .l { color: #ae81ff } /* Literal */
+.demo-highlight .n { color: #f8f8f2 } /* Name */
+.demo-highlight .o { color: #f92672 } /* Operator */
+.demo-highlight .x { color: #f8f8f2 } /* Other */
+.demo-highlight .p { color: #f8f8f2 } /* Punctuation */
+.demo-highlight .ch { color: #75715e } /* Comment.Hashbang */
+.demo-highlight .cm { color: #75715e } /* Comment.Multiline */
+.demo-highlight .cp { color: #75715e } /* Comment.Preproc */
+.demo-highlight .cpf { color: #75715e } /* Comment.PreprocFile */
+.demo-highlight .c1 { color: #75715e } /* Comment.Single */
+.demo-highlight .cs { color: #75715e } /* Comment.Special */
+.demo-highlight .gd { color: #f92672 } /* Generic.Deleted */
+.demo-highlight .ge { color: #f8f8f2; font-style: italic } /* Generic.Emph */
+.demo-highlight .gr { color: #f8f8f2 } /* Generic.Error */
+.demo-highlight .gh { color: #f8f8f2 } /* Generic.Heading */
+.demo-highlight .gi { color: #a6e22e } /* Generic.Inserted */
+.demo-highlight .go { color: #66d9ef } /* Generic.Output */
+.demo-highlight .gp { color: #f92672; font-weight: bold } /* Generic.Prompt */
+.demo-highlight .gs { color: #f8f8f2; font-weight: bold } /* Generic.Strong */
+.demo-highlight .gu { color: #75715e } /* Generic.Subheading */
+.demo-highlight .gt { color: #f8f8f2 } /* Generic.Traceback */
+.demo-highlight .kc { color: #66d9ef } /* Keyword.Constant */
+.demo-highlight .kd { color: #66d9ef } /* Keyword.Declaration */
+.demo-highlight .kn { color: #f92672 } /* Keyword.Namespace */
+.demo-highlight .kp { color: #66d9ef } /* Keyword.Pseudo */
+.demo-highlight .kr { color: #66d9ef } /* Keyword.Reserved */
+.demo-highlight .kt { color: #66d9ef } /* Keyword.Type */
+.demo-highlight .ld { color: #e6db74 } /* Literal.Date */
+.demo-highlight .m { color: #ae81ff } /* Literal.Number */
+.demo-highlight .s { color: #e6db74 } /* Literal.String */
+.demo-highlight .na { color: #a6e22e } /* Name.Attribute */
+.demo-highlight .nb { color: #f8f8f2 } /* Name.Builtin */
+.demo-highlight .nc { color: #a6e22e } /* Name.Class */
+.demo-highlight .no { color: #66d9ef } /* Name.Constant */
+.demo-highlight .nd { color: #a6e22e } /* Name.Decorator */
+.demo-highlight .ni { color: #f8f8f2 } /* Name.Entity */
+.demo-highlight .ne { color: #a6e22e } /* Name.Exception */
+.demo-highlight .nf { color: #a6e22e } /* Name.Function */
+.demo-highlight .nl { color: #f8f8f2 } /* Name.Label */
+.demo-highlight .nn { color: #f8f8f2 } /* Name.Namespace */
+.demo-highlight .nx { color: #a6e22e } /* Name.Other */
+.demo-highlight .py { color: #f8f8f2 } /* Name.Property */
+.demo-highlight .nt { color: #f92672 } /* Name.Tag */
+.demo-highlight .nv { color: #f8f8f2 } /* Name.Variable */
+.demo-highlight .ow { color: #f92672 } /* Operator.Word */
+.demo-highlight .w { color: #f8f8f2 } /* Text.Whitespace */
+.demo-highlight .mb { color: #ae81ff } /* Literal.Number.Bin */
+.demo-highlight .mf { color: #ae81ff } /* Literal.Number.Float */
+.demo-highlight .mh { color: #ae81ff } /* Literal.Number.Hex */
+.demo-highlight .mi { color: #ae81ff } /* Literal.Number.Integer */
+.demo-highlight .mo { color: #ae81ff } /* Literal.Number.Oct */
+.demo-highlight .sa { color: #e6db74 } /* Literal.String.Affix */
+.demo-highlight .sb { color: #e6db74 } /* Literal.String.Backtick */
+.demo-highlight .sc { color: #e6db74 } /* Literal.String.Char */
+.demo-highlight .dl { color: #e6db74 } /* Literal.String.Delimiter */
+.demo-highlight .sd { color: #e6db74 } /* Literal.String.Doc */
+.demo-highlight .s2 { color: #e6db74 } /* Literal.String.Double */
+.demo-highlight .se { color: #ae81ff } /* Literal.String.Escape */
+.demo-highlight .sh { color: #e6db74 } /* Literal.String.Heredoc */
+.demo-highlight .si { color: #e6db74 } /* Literal.String.Interpol */
+.demo-highlight .sx { color: #e6db74 } /* Literal.String.Other */
+.demo-highlight .sr { color: #e6db74 } /* Literal.String.Regex */
+.demo-highlight .s1 { color: #e6db74 } /* Literal.String.Single */
+.demo-highlight .ss { color: #e6db74 } /* Literal.String.Symbol */
+.demo-highlight .bp { color: #f8f8f2 } /* Name.Builtin.Pseudo */
+.demo-highlight .fm { color: #a6e22e } /* Name.Function.Magic */
+.demo-highlight .vc { color: #f8f8f2 } /* Name.Variable.Class */
+.demo-highlight .vg { color: #f8f8f2 } /* Name.Variable.Global */
+.demo-highlight .vi { color: #f8f8f2 } /* Name.Variable.Instance */
+.demo-highlight .vm { color: #f8f8f2 } /* Name.Variable.Magic */
+.demo-highlight .il { color: #ae81ff } /* Literal.Number.Integer.Long */</style>

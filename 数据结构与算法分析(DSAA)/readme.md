@@ -4,5 +4,6 @@
 
 **对应的OJ网址**[SUSTech_acm](https://acm.sustech.edu.cn/onlinejudge/contest.php)可以在上面查看题目!!!
 
-Week1-14文件从小到大依次对应CS203,Lab1-10
+Week1,2文件依次对应CS203中的Lab1,2
+
 Bonus文件对应Bonus Lab

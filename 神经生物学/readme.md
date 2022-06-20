@@ -1,2 +1,2 @@
-
-[教材见阿里云分享:https://www.aliyundrive.com/s/5mJJk9ppVcQ](https://www.aliyundrive.com/s/5mJJk9ppVcQ)
+秋季学期姬生健老师的课班比较小，需要每个人在一周内读完一篇CELL论文然后做2小时全英pre。
+比较需要生化基础，慎选。
